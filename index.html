@@ -355,30 +355,42 @@
 		btn.textContent = opt;
 
 		btn.onclick = () => {
-		  // disable all buttons
-		  [...optionsEl.children].forEach(b => b.disabled = true);
 
-		  // highlight correct answer
-		  optionsEl.children[q.correct].classList.add("correct");
+     // ❌ WRONG ANSWER
+	  if (idx !== q.correct) {
+		const upset = document.createElement("div");
+		upset.className = "remember";
+		upset.textContent = "Hmm… that doesn’t feel right 😔💔 Try again!";
+		optionsEl.appendChild(upset);
+	
+		// little shake effect (optional but cute)
+		btn.style.transform = "scale(0.95)";
+		setTimeout(() => btn.style.transform = "scale(1)", 150);
+	
+		return; // stay on same question
+	  }
+	
+	  // ✅ CORRECT ANSWER
+	  [...optionsEl.children].forEach(b => b.disabled = true);
+	  btn.classList.add("correct");
+	
+	  const note = document.createElement("div");
+	  note.className = "remember";
+	  note.textContent = "Yes… that’s our moment ❤️🥺";
+	  optionsEl.appendChild(note);
+	
+	  setTimeout(() => {
+		currentQ++;
+		if (currentQ < quizData.length) {
+		  showQuestion();
+		} else {
+		  quiz.style.display = "none";
+		  result.style.display = "block";
+		  fullScreenConfetti();
+		}
+	  }, 1500);
+	};
 
-		  // nostalgic text
-		  const note = document.createElement("div");
-		  note.className = "remember";
-		  note.textContent = "Some moments stay forever ❤️";
-		  optionsEl.appendChild(note);
-
-		  // go to next question after delay
-		  setTimeout(() => {
-			currentQ++;
-			if (currentQ < quizData.length) {
-			  showQuestion();
-			} else {
-			  quiz.style.display = "none";
-			  result.style.display = "block";
-			  fullScreenConfetti();
-			}
-		  }, 1500);
-		};
 
 		optionsEl.appendChild(btn);
 	  });
@@ -395,4 +407,5 @@
 
   </script>
 </body>
+
 </html>               
