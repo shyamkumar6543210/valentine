@@ -164,7 +164,7 @@
 	  display: block;
 	  margin: 20px auto 0 auto;
 	  max-width: 90%;
-	  border-radius: 16px; /* optional but nice */
+	  border-radius: 16px;
 	}
 
 	.card {
@@ -297,10 +297,17 @@
 	  showQuestion();
 
 	  const music = document.getElementById("bgMusic");
-	  music.volume = 0.4;   // soft & romantic
+	  music.volume = 0.4;
 	  music.play();
 
 	};
+	const wrongMessages = [
+	  "Hmm… that doesn’t sound like us 🥺❤️ Try again!",
+	  "Nope 😏 You know this one!",
+	  "Close… but not quite 💔",
+	  "Think harder… I know you remember 😉",
+	  "That answer looks shy 😌 Try again!"
+	];
 
 	
 	/* ---------- QUIZ DATA ---------- */
@@ -372,14 +379,12 @@
 		  if (idx !== q.correct) {
 			    const upset = document.createElement("div");
 			    upset.className = "remember";
-			    upset.textContent = "Hmm… that doesn’t sound like us 🥺💔 Try again!";
+			    upset.textContent = wrongMessages[Math.floor(Math.random() * wrongMessages.length)];
 			    optionsEl.appendChild(upset);
-			
-			    // little shake effect (optional but cute)
 			    btn.style.transform = "scale(0.95)";
 			    setTimeout(() => btn.style.transform = "scale(1)", 150);
 			
-			    return; // stay on same question
+			    return;
 			  }
 			
 			  // ✅ CORRECT ANSWER
@@ -407,19 +412,11 @@
 	  });
 	}
 
-
-	/* ---------- MODIFY YES CLICK ---------- */
-	yesBtn.addEventListener("click", () => {
-	  zone.style.display = "none";
-	  hint.style.display = "none";
-	  quiz.style.display = "block";
-	  showQuestion();
-	});
-
   </script>
 </body>
 
 </html>               
+
 
 
 
