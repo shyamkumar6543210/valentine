@@ -356,18 +356,23 @@
 
 		btn.onclick = () => {
 
-     // ❌ WRONG ANSWER
-	  if (idx !== q.correct) {
-		const upset = document.createElement("div");
-		upset.className = "remember";
-		upset.textContent = "Hmm… that doesn’t feel right 😔💔 Try again!";
-		optionsEl.appendChild(upset);
+     btn.onclick = () => {
+  // Clear previous messages
+  const oldNotes = optionsEl.querySelectorAll(".remember");
+  oldNotes.forEach(n => n.remove());
+
+  // ❌ WRONG ANSWER
+  if (idx !== q.correct) {
+	    const upset = document.createElement("div");
+	    upset.className = "remember";
+	    upset.textContent = "Hmm… that doesn’t feel right 😔💔 Try again!";
+	    optionsEl.appendChild(upset);
 	
-		// little shake effect (optional but cute)
-		btn.style.transform = "scale(0.95)";
-		setTimeout(() => btn.style.transform = "scale(1)", 150);
+	    // little shake effect (optional but cute)
+	    btn.style.transform = "scale(0.95)";
+	    setTimeout(() => btn.style.transform = "scale(1)", 150);
 	
-		return; // stay on same question
+	    return; // stay on same question
 	  }
 	
 	  // ✅ CORRECT ANSWER
@@ -380,14 +385,14 @@
 	  optionsEl.appendChild(note);
 	
 	  setTimeout(() => {
-		currentQ++;
-		if (currentQ < quizData.length) {
-		  showQuestion();
-		} else {
-		  quiz.style.display = "none";
-		  result.style.display = "block";
-		  fullScreenConfetti();
-		}
+	    currentQ++;
+	    if (currentQ < quizData.length) {
+	      showQuestion();
+	    } else {
+	      quiz.style.display = "none";
+	      result.style.display = "block";
+	      fullScreenConfetti();
+	    }
 	  }, 1500);
 	};
 
@@ -409,3 +414,4 @@
 </body>
 
 </html>               
+
