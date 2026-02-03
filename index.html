@@ -203,7 +203,7 @@
       <path d="M190 144 C186 144 182 148 182 152 C182 160 190 164 190 170 C190 164 198 160 198 152 C198 148 194 144 190 144Z" fill="#ff7aa2"/>
     </svg>
 
-    <h1>Tanu❤️ will you be my valentine?</h1>
+    <h1 id="introText">Tanu❤️ will you be my valentine?</h1>
 
     <section class="button-zone" id="zone">
       <button id="yesBtn">Yes</button>
@@ -286,9 +286,11 @@
 
     // YES BUTTON CLICK
     yesBtn.onclick = () => {
+	  const introText = document.getElementById("introText");
+  	  introText.style.display = "none";
 	  zone.style.display = "none";
 	  hint.style.display = "none";
-	  result.style.display = "none";   // 🔥 important
+	  result.style.display = "none"; 
 	  quiz.style.display = "block";
 	  showQuestion();
 	};
@@ -411,5 +413,6 @@
 </body>
 
 </html>               
+
 
 
