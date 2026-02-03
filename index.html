@@ -180,6 +180,8 @@
 
 <body>
   <canvas id="confettiCanvas"></canvas>
+  <audio id="bgMusic" src="song.mpeg" loop preload="auto"></audio>
+
 
   <main class="card">
     <svg class="art" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
@@ -293,6 +295,11 @@
 	  result.style.display = "none"; 
 	  quiz.style.display = "block";
 	  showQuestion();
+
+	  const music = document.getElementById("bgMusic");
+	  music.volume = 0.4;   // soft & romantic
+	  music.play();
+
 	};
 
 	
@@ -413,6 +420,7 @@
 </body>
 
 </html>               
+
 
 
 
